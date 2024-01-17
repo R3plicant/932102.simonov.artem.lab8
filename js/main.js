@@ -15,17 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     saveButton.addEventListener('click', function() {
         var inputs = document.querySelectorAll('.input-class');
-        var data = {};
+        var data = '{';
         inputs.forEach(function(input) {
             console.log(input);
             var keys = input.querySelectorAll('input[type="text"]');
-            data[keys[0].value] = keys[1].value;
+			data += '"'+keys[0].value+'"'+':'+'"'+keys[1].value+'"'+',';
             console.log(data);
         });
+        data = data.slice(0,-1);
+		data += "}";
         console.log(data);
-        var text = JSON.stringify(data);
         var div = document.createElement("div");
-        div.innerHTML = text;
+        div.innerHTML = data;
         document.body.appendChild(div);
     });
 
